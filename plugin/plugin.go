@@ -291,7 +291,7 @@ func (p *plugin) generateProto3Message(file *generator.FileDescriptor, message *
 		variableName := "this." + fieldName
 		repeated := field.IsRepeated()
 		// Golang's proto3 has no concept of unset primitive fields
-		nullable := (gogoproto.IsNullable(field) || !gogoproto.ImportsGoGoProto(file.FileDescriptorProto)) && field.IsMessage()
+		nullable := gogoproto.IsNullable(field)
 		if p.fieldIsProto3Map(file, message, field) {
 			p.P(`// Validation of proto3 map<> fields is unsupported.`)
 			continue
